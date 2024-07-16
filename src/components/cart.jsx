@@ -41,7 +41,7 @@ function Cart() {
     }
 
     const handleRazorpayScreen = async(amount) => {
-        const res = await loadScript("https:/checkout.razorpay.com/v1/checkout.js");
+        const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
         if(!res){
             alert("Something went wrong at razorpay screen");
             return;
