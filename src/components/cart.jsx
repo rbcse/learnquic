@@ -90,7 +90,7 @@ function Cart() {
             }
         }
 
-        const paymentObject = new window.Razorpay(options);
+        const paymentObject = new Razorpay(options);
         paymentObject.open();
     }
 
