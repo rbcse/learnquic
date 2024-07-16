@@ -2,12 +2,14 @@ import axios from 'axios';
 import '../styles/userprofile.css';
 import { useEffect, useState } from 'react';
 const BASE_URL = import.meta.env.REACT_APP_BASE_URL;
+import {useNavigate} from 'react-router-dom';
 function UserProfile() {
 
     const [userInfo, setUserInfo] = useState({});
     const [userBlogs, setUserBlogs] = useState([]);
     const [quizData, setquizData] = useState([]);
     const [courseData , setCourseData] = useState([]);
+    const navigate = useNavigate();
     const getuserdetails = async () => {
         const token = localStorage.getItem("token");
         const response = await axios.get(`${BASE_URL}/getprofiledetails`,{
@@ -29,9 +31,17 @@ function UserProfile() {
         return str[0].toUpperCase() + str.substring(1);
     }
 
+    const Logout = async()=>{
+        localStorage.removeItem("token");
+        navigate("/");
+    }
+
     return <div className="container">
         <div className="inner-container">
-            <a href="/">Quic<span>Learn</span></a>
+            <header>
+                <a href="/">Quic<span>Learn</span></a>
+                <button onClick={Logout}>Logout</button>
+            </header>
             <div className="user-detail-section">
                 <div className="user-name">
                     <p>Username : </p>
